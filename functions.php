@@ -1,5 +1,8 @@
 <?php
-    function main_menu(){
+    define("Student", 450);
+    define("Staff", 700);
+    define("visitor", 100);
+    $parking_array = [];    function main_menu(){
         echo("========================================\n");
         echo("Welcome to the Campus Management System\n");
         echo("========================================\n");
@@ -19,10 +22,15 @@
         echo("=========================\n");
         echo "1) Borrow Book\n2) Return Book\n3) Pay Fines\n4) Back\n";
     }
-    
-    define($student_parking, 450);
-    define($staff_parking, 700);
-    define($visitor_parking, 100);
-    $parking_array = array();
-    
+    function add_permit($x, $y, $z){
+            global $parking_array;
+            if($y <18)
+           $parking_array[] = [
+                ["Name"=> $x, 
+                "Age"=> $y, 
+                "permit" => $z]
+            ];
+
+            print_r($parking_array);
+    }
 ?>
