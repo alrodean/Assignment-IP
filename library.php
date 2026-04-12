@@ -1,3 +1,5 @@
 <?php
-    library();
+function Library(){
+    menu_heading(3);
+}
 ?>
