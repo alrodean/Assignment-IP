@@ -20,7 +20,7 @@ include "performance.php";
                 Performance();
                 break;
             case 4:
-                echo "Thank you for using Campus Management System. GoodBye!";
+                echo "Thank you for using Campus Management System. Goodbye!\n";
                 exit();
             default:
                 echo "Invalid Entry. Try again!";

@@ -1,6 +1,7 @@
 <?php
-
-
+ define("STUDENT", 450);
+ define("STAFF", 700);
+ define("VISITOR", 100);
 function Parking(){
     while(true){
         menuHeading(2);
@@ -17,13 +18,16 @@ function Parking(){
                 echo "Module complete!\n";
                 pause();
                 return;
-                break;
+
             
             default :
                 echo "Invalid option\n";
                 pause();
+        }
     }
-    }
+    
+   
+
 
 }
 ?>

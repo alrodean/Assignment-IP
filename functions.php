@@ -1,4 +1,5 @@
 <!-- <?php
+
 function menuHeading($index_choice)
 {
     switch ($index_choice) {
@@ -40,7 +41,7 @@ function menuHeading($index_choice)
             echo "1) Add Student\n2) Back\n";
             echo "\n";
             break;
-            
+
         default:
             echo "Oops!! Someone accessed the code and changed the parameters..";
     }
