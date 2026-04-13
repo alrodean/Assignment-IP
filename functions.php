@@ -55,4 +55,20 @@ function pause(){
     echo "\n";
 }
 
+function subMenus($index){
+    switch($index){
+        case 1:
+            echo "\n";
+            echo "What would you like to do?: ";
+            echo "\n1)Student\n2)Staff\n3)Visitor\n";
+            echo "\n";
+            break;
+
+        default:
+            "Invalid Option!";
+            pause();
+    }
+
+}
+
 ?>

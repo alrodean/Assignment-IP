@@ -8,7 +8,31 @@ function Parking(){
         $userChoice = readline("Enter choice: ");
         switch($userChoice){
             case 1:
-                echo "Do something here!\n";
+                subMenus(1);
+                $userType = readline("Select an option: ");
+                $userAge = readline("Enter your age: ");
+
+                while(true){
+                    if($userAge < 18){
+                        echo "No permits are allowed for under 18's";
+                        pause();
+                        break;
+                    }
+                    else if($userAge > 17){
+                        echo "i must add logic here";
+                        pause();
+                        break;
+                    }
+                    else{
+                        echo "Invalid option!";
+                        pause();
+                        break;
+                    }
+
+
+
+                }
+
                 break;
             case 2:
                 echo "Do something here!\n";
