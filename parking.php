@@ -7,20 +7,22 @@
 function Parking(){
     global $permits;
     while(true){
-        if(count($permits) >= PARKING_LIMIT){
-            echo "Parking capacity has been reached. No more permits allowed...";
-            pause();
-            break;
-        }
-        else{
-            echo "(There are ".(PARKING_LIMIT - count($permits))." permits remaining)\n";
-            pause();
-        }
- 
         menuHeading(2);
+        //display how many permits are left
+        $remaining = PARKING_LIMIT - count($permits);
+        if($remaining < 0){
+            $remaining = 0;
+        }
+        echo "(There are ".$remaining." permits remaining)\n";
+        echo "\n";
         $userChoice = readline("Enter choice: ");
         switch($userChoice){
             case 1:
+                if($remaining >= PARKING_LIMIT){
+                    echo "Parking capacity has been reached. No more permits allowed...";
+                    pause();
+                    break;
+                    }
                 subMenus(1);
                 //capture permit type
                 $userType = readline("Select an option: ");
@@ -78,10 +80,13 @@ function Parking(){
 
             case 2:
                 foreach($permits as $x){
+                echo "\n";
                 echo $x['Permit Type'].' | ';
                 echo $x['Age'].' | ';
-                echo 'R'.$x['Price'];
+                echo 'R'.$x['Price']."\n";
+                echo "====================\n";
                 }
+                pause();
                 break;
 
             case 3:
