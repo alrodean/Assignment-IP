@@ -19,7 +19,7 @@ function menuHeading($index_choice)
             echo ("Parking Permit Module\n");
             echo ("=========================\n");
             echo "\n";
-            echo "1) Add Permit\n2) View Permit\n3) Back\n";
+            echo "1) Add Permit\n2) View Permit\n3) Summary\n 4)Back\n";
             echo "\n";
             break;
         case 3:
@@ -67,6 +67,7 @@ function subMenus($index){
         default:
             echo "Invalid Option!";
             pause();
+            break;
     }
 
 }
