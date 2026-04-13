@@ -1,7 +1,8 @@
 <?php
- define("STUDENT", 450);
- define("STAFF", 700);
- define("VISITOR", 100);
+ define("STUDENT_PERMIT", 450);
+ define("STAFF_PERMIT", 750);
+ define("VISITOR_PERMIT", 100);
+ $permits = [];
 function Parking(){
     while(true){
         menuHeading(2);
@@ -12,14 +13,19 @@ function Parking(){
                 $userType = readline("Select an option: ");
                 $userAge = readline("Enter your age: ");
 
-                while(true){
                     if($userAge < 18){
                         echo "No permits are allowed for under 18's";
                         pause();
                         break;
                     }
                     else if($userAge > 17){
-                        echo "i must add logic here";
+                        $permits = [
+                            "Permit Type" => $userType,
+                            "Age" => $userAge,
+                            "Price" => 
+
+                        ]
+
                         pause();
                         break;
                     }
@@ -28,10 +34,6 @@ function Parking(){
                         pause();
                         break;
                     }
-
-
-
-                }
 
                 break;
             case 2:

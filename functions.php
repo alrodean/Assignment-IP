@@ -65,7 +65,7 @@ function subMenus($index){
             break;
 
         default:
-            "Invalid Option!";
+            echo "Invalid Option!";
             pause();
     }
 
