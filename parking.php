@@ -4,6 +4,7 @@
  define("VISITOR_PERMIT", 100);
  define("PARKING_LIMIT", 10);
  $permits = [];
+
 function Parking(){
     global $permits;
     while(true){
@@ -13,13 +14,14 @@ function Parking(){
         if($remaining < 0){
             $remaining = 0;
         }
+
         echo "(There are ".$remaining." permits remaining)\n";
         echo "\n";
         $userChoice = readline("Enter choice: ");
         switch($userChoice){
             case 1:
-                if($remaining >= PARKING_LIMIT){
-                    echo "Parking capacity has been reached. No more permits allowed...";
+                if(count($permits) >= PARKING_LIMIT){
+                    echo "Parking capacity has been reached. No more permits allowed...\n";
                     pause();
                     break;
                     }
@@ -56,9 +58,10 @@ function Parking(){
                         pause();
                         break;
                     }
+                    $userAge = (int)$userAge;
                     //create a condition that does not allow permits to be issued if they are below 18
                     if($userAge < 18){
-                        echo "No permits are allowed for under 18's";
+                        echo "No permits are allowed for under 18's\n";
                         pause();
                         break;
                     }
@@ -72,28 +75,68 @@ function Parking(){
 
                     //Add array to another array
                     $permits[] = $permit;
-                    echo "\n";
-                    echo "Permit Issued! R".$price;
-                    echo "\n";
+                    echo "Permit Issued! R".$price."\n";
                     pause();
                 break;
 
             case 2:
-                foreach($permits as $x){
-                echo "\n";
-                echo $x['Permit Type'].' | ';
-                echo $x['Age'].' | ';
-                echo 'R'.$x['Price']."\n";
-                echo "====================\n";
+                if(empty($permits)){
+                    echo "There are currently no permits sold!\n";
+                    pause();
                 }
-                pause();
+                else{
+                    foreach($permits as $x){
+                    echo "\n";
+                    echo $x['Permit Type'].' | ';
+                    echo $x['Age'].' | ';
+                    echo 'R'.$x['Price']."\n";
+                    echo "====================\n";
+                    }
+                    pause();
+                    
+                }
                 break;
 
             case 3:
+                if(empty($permits)){
+                    echo "There are currently no permits sold!\n";
+                    pause();
+                    break;
+                }
+
+                $numOfStudent = 0;
+                $numOfStaff = 0;
+                $numOfVisitors = 0;
+                $revenue = 0;
+
+                foreach($permits as $permit){
+                    if($permit['Permit Type'] == "Student"){
+                        $numOfStudent++;
+                    }
+                    elseif($permit['Permit Type'] == "Staff"){
+                        $numOfStaff++;
+                    }
+                    elseif($permit['Permit Type'] == "Visitor"){
+                        $numOfVisitors++;
+                    }
+                    $revenue += $permit['Price'];
+                }
+
+                echo "Student Permits : ".$numOfStudent."\n";
+                echo "Staff Permits : ".$numOfStaff."\n";
+                echo "Visitor Permits : ".$numOfVisitors."\n";
+                
+                echo "\n";
+
+                echo "Revenue so far with ".count($permits)." permits : R".$revenue;
+                echo "\n";
+                pause();
+            break;
+            
+            case 4:
                 echo "Module complete!\n";
                 pause();
                 return;
-            
             default :
                 echo "Invalid option\n";
                 pause();

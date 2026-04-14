@@ -50,6 +50,7 @@ function menuHeading($index_choice)
 }
 
 function pause(){
+  
     echo "\n";
     readline("Press Enter to continue...");
     echo "\n";
