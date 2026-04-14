@@ -1,4 +1,4 @@
-<!-- <?php
+<?php
 
 function menuHeading($index_choice)
 {
@@ -64,11 +64,11 @@ function subMenus($index){
             echo "\n1)Student\n2)Staff\n3)Visitor\n";
             echo "\n";
             break;
-        case 2:
-            echo "\n";
-            echo "What would you like to do?: ";
-            echo "\n1)Borrow Book\n2)Return Book\n3)Pay Fines\n4) Back";
-            echo "\n";
+        // case 2:
+        //     echo "\n";
+        //     echo "What would you like to do?: ";
+        //     echo "\n1)Borrow Book\n2)Return Book\n3)Pay Fines\n4) Back";
+        //     echo "\n";
 
         default:
             echo "Invalid Option!";
