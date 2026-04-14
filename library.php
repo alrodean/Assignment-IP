@@ -6,12 +6,15 @@ function Library(){
         switch($userChoice){
             case 1:
                 echo "Do something here!\n";
+                pause();
                 break;
             case 2:
                 echo "Do something here!\n";
+                pause();
                 break;
             case 3:
                 echo "Do something here!\n";
+                pause();
                 break;
             case 4:
                 echo "Module complete!\n";
