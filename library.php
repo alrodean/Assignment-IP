@@ -4,25 +4,32 @@ $users =[];
 $books = [];
 function Library(){
   while(true){
+    global $users;
         menuHeading(3);
         $userChoice = readline("Enter choice: ");
         switch($userChoice){
             case 1:
-                $userId = readline("Enter ID: ");
-                if(in_array($userId['User ID'])){
-                    echo "This user ID has already been taken. Try Again...\n";
+                $idExists = false;
+                $UID = readline("Please enter User ID :");
+                foreach($users as $_){
+                    $idExists = true;
+                    break;
+                    }
+                    if($idExists){
+                    echo ("User ID already already exists. Please try again...");
                     pause();
-                }
-                $userName = readline("Enter name: ");
-                $user = [$userId, $userName];
-                $users = $user;
+                    break;
+                    }
+                
+                $uName = readline("Please enter name: ");
+                $user = ['UID' => $UID, 'Name' => $uName];
+                $users[] = $user;
                 echo "User added!";
                 pause();
                 break;
             case 2:
-foreach($users as $u){
-    echo $u;
-}                pause();
+
+                pause();
                 break;
             case 3:
                 echo "Do something here!\n";
