@@ -26,7 +26,7 @@ function Library(){
                     pause();
                     break;
                     }
-                if($UID[0] != "U" || strlen($UID) != 3 || empty($UID)){
+                if( empty($UID) || $UID[0] != "U" || strlen($UID) != 3){
                     echo "Incorrect format! (e.g., U01) \n";
                     pause();
                     break;
@@ -82,6 +82,11 @@ function Library(){
                     break;
                 }
                 $duration = readline("Borrow duration in days (1-30) : ");
+                if(!is_numeric($duration) || $duration < 1 || $duration > 30){
+                    echo "Only enter a number between 1 - 30";
+                    pause();
+                    break;
+                }
                 if(!isset($user["Books"] )){
                     $user["Books"] = [];
                 }
@@ -97,8 +102,25 @@ function Library(){
                 pause();
                 break;
             case 3:
-                foreach($users['Books'] as $_i){
-                    print_r($_i);
+                if(empty($users)){
+                    echo "No users found!";
+                    pause();
+                    break;
+                }
+                foreach($users as $user){
+                    echo "\nUser ID : ". $user['UID']."\n";
+                    echo "\nName : ". $user['Name']."\n";
+
+                    if(empty($user['Books'])){
+                        echo "No books borrowed!";
+                    }
+                    else{
+                        foreach($user["Books"] as $book){
+                            echo $book['Book Title']." | "; 
+                            echo $book['Category']." | "; 
+                            echo $book['Allowed days']."\n"; 
+                        }
+                    }
                 }
                 pause();
                 break;
