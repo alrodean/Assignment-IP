@@ -19,7 +19,7 @@ function menuHeading($index_choice)
             echo ("Parking Permit Module\n");
             echo ("=========================\n");
             echo "\n";
-            echo "1) Add Permit\n2) View Permit\n3) Summary\n4)Back\n";
+            echo "1) Add Permit\n2) View Permit\n3) Summary\n4) Back\n";
             echo "\n";
             break;
         case 3:
@@ -38,7 +38,7 @@ function menuHeading($index_choice)
             echo ("Performance Module\n");
             echo ("=========================\n");
             echo "\n";
-            echo "1) Add Student\n2) Back\n";
+            echo "1) Add Student\n2) Summary \n3) Back\n";
             echo "\n";
             break;
 
