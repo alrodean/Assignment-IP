@@ -1,8 +1,7 @@
 <?php
 $students = [];
 
-function Performance()
-{
+function Performance(){
     global $students;
     while (true) {
         menuHeading(4);
@@ -18,35 +17,32 @@ function Performance()
                     }
                 }
                 if($isExist){
-                    echo "Student ID entered already entered...\n";
+                    echo "Student ID already exists...\n";
                     pause();
                     break;
                 }
                 
                 if (empty($studentID) || $studentID[0] != "S" || strlen($studentID) != 4) {
-                    echo "Invalid Student ID";
+                    echo "Invalid Student ID\n";
                     pause();
                     break;
                 }
                 $marks = [];
                 $total = 0;
-                $validMarks = true;
                 for ($i = 0; $i < 6; $i++) {
                     $examMark = readline("Enter mark : ");
                     if (!is_numeric($examMark) || $examMark < 0 || $examMark > 100) {
                         echo "Marks has to be between 0 - 100..\n";
                         pause();
-                        $validMarks = false;
-                        break;
+                        $i--;
+                        continue;
                     }
+                
                     $examMark = (int) $examMark;
                     $marks[] = $examMark;
                     $total += $examMark;
                 }
-                if (!$validMarks) {
-                    break;
-                }
-                $average = $total / 6;
+                    $average = round($total / 6, 2);
 
                 if($average >= 50 && $average < 75){
                     $result = "Pass";
@@ -74,7 +70,6 @@ function Performance()
                 pause();
                 break;
 
-
             case 2:
                 if(count($students) < 4){
                     echo "Must be 4 or more students stored first...\n";
@@ -99,7 +94,7 @@ function Performance()
                     $lowAve = $avg;
                     }
                 }
-                $classAverage = $totalAverage / count($students);
+                $classAverage = round($totalAverage / count($students), 2);
 
                 echo "Top Performer : $topPerformer\n";
                 echo "Highest Average : $highAve%\n";
@@ -119,7 +114,7 @@ function Performance()
             default:
                 echo "Invalid option\n";
                 pause();
-        }
+                }
     }
 
 }
