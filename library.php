@@ -50,7 +50,26 @@ function Library(){
                 break;
             case 2:
                 //Borrow Book
-                
+                $UID = readline("Enter your User ID : ");
+                if(handleEmptyInput($UID)){
+                    break;
+                }
+
+                $idExists = false;
+                foreach($users as $user){
+                    if($user['UID'] == $UID){
+                        $idExists = true;
+                        break;
+                    }
+                }
+                if(!$idExists){
+                    echo "User ID does not exist...\n";
+                    pause();
+                    break;
+                }
+
+
+                echo "Login Successful..\n";
                 break;
             case 3:
                 //Return
@@ -67,6 +86,8 @@ function Library(){
                 return;
             default:
                 echo "Invalid option!\n";
+                pause();
+                break;
         }
     }       
 }

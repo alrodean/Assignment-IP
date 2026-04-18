@@ -75,8 +75,15 @@ function subMenus($index){
             pause();
             break;
     }
-    function libraryVal1(){
-        
-    }
+   
 }
+
+ function handleEmptyInput($x){
+        if(empty($x)){
+            echo "\n";
+            echo "No input captured...\n";
+            echo "\n";
+            pause();
+        }
+    }
 ?>
