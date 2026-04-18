@@ -28,7 +28,7 @@ function menuHeading($index_choice)
             echo ("Library Borrowing & Fines\n");
             echo ("=========================\n");
             echo "\n";
-            echo "1) Add User\n2) Borrow Book\n3) Return Book\n4) Pay Fines\n4) Back\n";
+            echo "1) Add User\n2) Borrow Book\n3) Return Book\n4) Pay Fines\n5) User Summary\n6) Back\n";
             echo "\n";
             break;
 
@@ -75,7 +75,8 @@ function subMenus($index){
             pause();
             break;
     }
-
+    function libraryVal1(){
+        
+    }
 }
-
 ?>
