@@ -112,7 +112,7 @@ function Library(){
                         $duration = (int)$duration;
 
                         $book = [
-                            'Borrow ID' => count($user['Book Title']) + 1,
+                            'Borrow ID' => count($user['Books']) + 1,
                             'Book Title' => $bookName,
                             'Category' => $catType,
                             "Allowed Days" => $duration,
@@ -132,13 +132,191 @@ function Library(){
 
             case 3:
                 //Return
+                $UID = readline("Enter your User ID : ");
+                if(handleEmptyInput($UID)){
+                    break;
+                }
+
+                $foundUser = false;
+                foreach($users as &$user){
+                    if($user['UID'] == $UID){
+                        $foundUser = true;
+                        break;
+                    }
+                }
+
+                if(!$foundUser){
+                    unset($user);
+                    echo "User ID not found...\n";
+                    pause();
+                    break;
+                }
+
+                if(empty($user['Books'])){
+                    unset($user);
+                    echo "No borrowed books found for this user...\n";
+                    pause();
+                    break;
+                }
+
+                echo "Borrowed Books: \n";
+                foreach($user['Books'] as $book){
+                    echo "ID: ".$book['Borrow ID']." | ";
+                    echo $book['Book Title']." | ";
+                    echo $book['Category']." | ";
+                    echo $book['Allowed Days']." days\n ";
+                }
+
+                $borrowID = readline("Enter Borrow ID to return : ");
+
+                if(handleEmptyInput($borrowID) || !is_numeric($borrowID)){
+                    unset($user);
+                    echo "Invalid Borrow ID...\n";
+                    pause();
+                    break;
+                }
+
+                $foundBook = false;
+
+                foreach($user['Books'] as $index => $book){
+                    if($book['Borrow ID'] == $borrowID){
+                        $foundBook = true;
+                        break;
+                    }
+                }
+
+                if(!$foundBook){
+                    unset($user);
+                    echo "Borrow ID not found...\n";
+                    pause();
+                    break;
+                }
+
+                $actualDays = readline("Enter days kept : ");
+                if(handleEmptyInput($actualDays) || !is_numeric($actualDays) || $actualDays < 1){
+                    unset($user);
+                    echo "Invalid number of days...\n";
+                    pause();
+                    break;
+                }
+
+                $actualDays = (int)$actualDays;
+                $allowedDays = $book['Allowed Days'];
+                $dailyFine = $book['Daily Fine'];
+
+                if($actualDays > $allowedDays){
+                    $lateDays = $actualDays - $allowedDays;
+                    $fine = $lateDays * $dailyFine;
+                    $user['Fine'] += $fine;
+
+                    echo "Book returned late...\n";
+                    echo "Late days ".$lateDays."\n";
+                    echo "Fine Charged : R".$fine."\n";
+                }
+                else{
+                    echo " Book returned on time. No fine charged..\n";
+                }
+
+                unset($user['Books'][$index]);
+                $user['Books'] =  array_values($user['Books']);
+
+                unset($user);
+
+                pause();
                 break;
             case 4:
                 //Pay Fines
+                $UID = readline("Enter your User ID : ");
+                if(handleEmptyInput($UID)){
+                    break;
+                }
+
+                $foundUser = false;
+
+                foreach($users as &$user){
+                    if($user['UID'] == $UID){
+                        $foundUser = true;
+                        break;
+                    }
+                }
+
+                if(!$foundUser){
+                    unset($user);
+                    echo "User ID not found...\n";
+                    pause();
+                    break;
+                }
+
+                if($user['Fine'] <= 0){
+                    unset($user);
+                    echo "This user has no outstanding fine!\n";
+                    pause();
+                    break;
+                }
+
+                echo "Current Fine : R".$user['Fine']."\n";
+                $payment = readline("Enter payment amount : ");
+
+                if(handleEmptyInput($payment) || !is_numeric($payment) || $payment <= 0){
+                    unset($user);
+                    echo "Invalid payment amount...\n";
+                    pause();
+                    break;
+                }
+
+                $payment = (int)$payment;
+
+                if($payment >= $user['Fine']){
+                    $change = $payment - $user['Fine'];
+                    $user["Fine"] = 0;
+
+                    echo "Fine Fully paid!\n";
+                    if ($change > 0){
+                        echo "Change : R".$change."\n";
+                    }
+                }
+                else{
+                    $user['Fine'] -= $payment;
+                    echo "Payment successful!\n";
+                    echo "Remaining Fine : R".$user['Fine']."\n";
+                }
+
+                unset($user);
+                pause();
                 break;
+                
             case 5:
                 //User Summary
-                break;
+                if(empty($users)){
+                    echo "No users found!...\n";
+                    pause();
+                    break;
+                }
+
+                foreach($users as $user){
+                    echo "\n=======================\n";
+                    echo "User ID : ".$user['UID']."\n";
+                    echo "Name : ".$user['Name']."\n";
+                    echo "Fine : ".$user['Fine']."\n";
+
+                    if(empty($user['Books'])){
+                        echo "No books borrowed...\n";
+                    }
+                    else{
+                        echo "Books : \n";
+                        foreach($user['Books'] as $book){
+                            echo "ID : ".$book["Borrow ID"]." | ";
+                            echo $book["Book Title"]." | ";
+                            echo $book["Category"]." | ";
+                            echo $book["Allowed Days"]." day | ";
+                            echo "Fine : R".$book["Daily Fine"]."/days \n";
+                        }
+                    }
+                }
+                 echo "\n=======================\n";
+                 pause();
+                 break;
+
             case 6:
                 echo "Module Complete! Press Enter to continue...\n";
                 pause();
