@@ -23,7 +23,7 @@ include "performance.php";
                 echo "Thank you for using Campus Management System. Goodbye!\n";
                 exit();
             default:
-                echo "Invalid Entry. Try again!";
+                echo "Invalid Entry. Try again!\n";
                 pause();
         }
     }

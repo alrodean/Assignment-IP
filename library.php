@@ -284,7 +284,7 @@ function Library(){
                 unset($user);
                 pause();
                 break;
-                
+
             case 5:
                 //User Summary
                 if(empty($users)){
@@ -297,7 +297,7 @@ function Library(){
                     echo "\n=======================\n";
                     echo "User ID : ".$user['UID']."\n";
                     echo "Name : ".$user['Name']."\n";
-                    echo "Fine : ".$user['Fine']."\n";
+                    echo "Fine : R".$user['Fine']."\n";
 
                     if(empty($user['Books'])){
                         echo "No books borrowed...\n";
@@ -308,8 +308,8 @@ function Library(){
                             echo "ID : ".$book["Borrow ID"]." | ";
                             echo $book["Book Title"]." | ";
                             echo $book["Category"]." | ";
-                            echo $book["Allowed Days"]." day | ";
-                            echo "Fine : R".$book["Daily Fine"]."/days \n";
+                            echo $book["Allowed Days"]." days | ";
+                            echo "Fine : R".$book["Daily Fine"]."/day \n";
                         }
                     }
                 }
