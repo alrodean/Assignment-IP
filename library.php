@@ -68,8 +68,32 @@ function Library(){
                     break;
                 }
 
-
+                echo "\n";
                 echo "Login Successful..\n";
+                echo "\n";
+
+                $bookName = readline("Book Title : ");
+                if(empty($bookName)){
+                    echo "No input captured...\n";
+                    pause();
+                    break;
+                }                
+                
+                echo "Category : \n1) TextBook (R5/day)\n2) Journal (R3/Day)\n3) References (R10/Day)\n";
+
+                $category = readline("Choose a category : ");
+                if(handleEmptyInput($category) || !is_numeric($category) || $category > 3){
+                    echo "Invalid option chosen. Please try again...\n";
+                    pause();
+                    break;
+                }
+                $duration = readline("Borrow duration in days (1 - 30");
+                if(handleEmptyInput($duration) || !is_numeric($duration) || $duration < 1 || $duration > 31){{
+                    echo "Min. Days : 1 | Max. Days : 30. Choose any data intween 1 and 30\n";                                                                                                                    "
+                }
+
+
+
                 break;
             case 3:
                 //Return

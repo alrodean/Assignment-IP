@@ -84,6 +84,7 @@ function subMenus($index){
             echo "No input captured...\n";
             echo "\n";
             pause();
+            return;
         }
     }
 ?>
