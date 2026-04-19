@@ -112,6 +112,7 @@ function Library(){
                         $duration = (int)$duration;
 
                         $book = [
+                            'Borrow ID' => 1,
                             'Book Title' => $bookName,
                             'Category' => $catType,
                             "Allowed Days" => $duration,
